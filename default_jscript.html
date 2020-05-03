@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>default index html </title>
+
+    <script type="text/javascript">
+	
+		/***********************************************************************
+		*! \fn          window.onload
+		*  \brief       set intervall timer after page load
+		*  \param       dataPtr String to scroll across
+		*  \param       fb Pointer to the frame buffer array
+		*  \exception   none
+		*  \return      length of frame buffer
+		***********************************************************************/
+	    window.onload = function() {            
+			setInterval(ShowDateAndTime,1000);
+		}
+		
+
+		/***********************************************************************
+		*! \fn          int16_t create_fb(char *dataPtr, byte *fb)
+		*  \brief       reset the Framebuffer
+		*  \param       dataPtr String to scroll across
+		*  \param       fb Pointer to the frame buffer array
+		*  \exception   none
+		*  \return      length of frame buffer
+		***********************************************************************/		
+		function ShowDateAndTime(){
+		
+			var today = new Date();
+			var month = today.getMonth();
+			var day = today.getDay();
+			var year = today.getFullYear();
+
+			var hour = today.getHours();
+			var minute = today.getMinutes();
+			var seconds = today.getSeconds();
+
+			document.getElementById('id_clock').innerHTML = year + '-' + leadingzero(month) + '-' + leadingzero(day) + ' - ' + leadingzero(hour) + ':' + leadingzero(minute) + ":" + leadingzero(seconds);
+			window.status = "test";
+		
+		};
+
+		/***********************************************************************
+		*! \fn          function leadingzero (number)
+		*  \brief       set leading zero to numer
+		*  \param       number
+		*  \exception   none
+		*  \return      number with leading
+		***********************************************************************/		
+		function leadingzero (number) {
+			return (number < 10) ? '0' + number : number;
+		}
+	
+    </script>
+    <style type="text/css">
+    </style>
+
+
+
+</head>
+
+<body>
+
+	<!--     Show Date and Time   -->
+    <div id="id_clock" name="id_clock"></div>
+
+
+</body>
+
+</html>
