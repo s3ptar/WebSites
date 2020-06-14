@@ -1,104 +1,425 @@
+
+
 <!doctype html>
+
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>Holy Grail Layout solved by flexbox - Flexbox.ninja</title>
 
-		<meta name="viewport" content="initial-scale=1.0; width=device-width">
+            <head>
 
-		<style type="text/css">
-			* {
-				box-sizing: border-box;
-			}
-			html, body {
-				margin: 0;
-				padding: 0;
-				font-family: sans-serif;
-				font-size: 1.1em;
-				text-align: center;
-				color: #FFF;
-			}
-			.holy-grail header,
-			.holy-grail footer,
-			.hg-sidebar,
-			.hg-navigationbar,
-			.holy-grail-content {
-				padding: 20px;
-			}
-			.holy-grail header{
-				background: rgb(148, 31, 243);
-			}
-			.holy-grail footer {
-				background: rgb(177, 179, 241);
-			}
-			.hg-sidebar {
-				background: #F34A4E;
-			}
-			.hg-navigationbar {
-				background: rgb(161, 74, 243);
-			}
-			.holy-grail-content {
-				color: #777;
-			}
+                        <meta charset="utf-8">
 
-			/**
-			 * Flex things:
-			 * — Mobile first
-			 * — Responsive
-			 */
-			.holy-grail {
-				min-height: 100vh;
-			}
-			.holy-grail,
-			.holy-grail-body {
-				display: flex;
-				flex: 1 1 auto;
-				flex-direction: column;
-			}
-			.holy-grail-content {
-				flex: 1 1 auto;
-			}
-			@media (min-width: 768px) {
-				.holy-grail-sidebar-1 {
-					order: -1;
-				}
-				.holy-grail-body {
-					flex-direction: row;
-				}
-				.hg-sidebar{	
-					flex: 0 0 260px;
-				}
-				.hg-navigationbar{
-					flex: 0 0 260px;
-				}
-			}
-		</style>
+                        <title>Holy Grail Layout</title>
 
-	</head>	
-	<body class="holy-grail">
+ 
 
-		<header>
-			<p>Header</p>
-		</header>
+                        <meta name="viewport" content="initial-scale=1.0; width=device-width">
 
-		<div class="holy-grail-body">
+ 
 
-			<section class="holy-grail-content">
-				<p>Main content of the page</p>
-			</section>
+                        <script src="jquery.min.js" type="text/javascript"></script>
 
-			<div class="holy-grail-sidebar-1 hg-navigationbar">
-				<p>Navigation</p>
-			</div>
+                        <script type="text/javascript">
 
-			<div class="holy-grail-sidebar-2 hg-sidebar">
-				<p>Sidebar 2</p>
-			</div>
+ 
 
-		</div>
+ 
 
-		<footer>
-			<p>Footer</p>
-		</footer>
-	</body>
+                                    /***********************************************************************
+
+                                    *! \fn          window.onload
+
+                                    *  \brief       set intervall timer after page load
+
+                                    *  \param       dataPtr String to scroll across
+
+                                    *  \param       fb Pointer to the frame buffer array
+
+                                    *  \exception   none
+
+                                    *  \return      length of frame buffer
+
+                                    ***********************************************************************/
+
+                        window.onload = function() {           
+
+                                               setInterval(ShowDateAndTime,1000);
+
+                                               document.getElementById("id_Browser").innerHTML = navigator.appName;
+
+                                               $.get("GetIP.php", function(data){
+
+                                                           var myObj =  JSON.parse(data);
+
+                                                           document.getElementById("ip_Browser").innerHTML = myObj.ip_adr;
+
+                                               });
+
+                                    }
+
+                                   
+
+                                   
+
+                                    /***********************************************************************
+
+                                    *! \fn          window.onload
+
+                                    *  \brief       set intervall timer after page load
+
+                                    *  \param       dataPtr String to scroll across
+
+                                    *  \param       fb Pointer to the frame buffer array
+
+                                    *  \exception   none
+
+                                    *  \return      length of frame buffer
+
+                                    ***********************************************************************/
+
+                                    function DisplayIP(response) {
+
+                                               document.getElementById("ip_browser").innerHTML = "Your IP Address is " + response.ip;
+
+                                    }
+
+ 
+
+ 
+
+                                    /***********************************************************************
+
+                                    *! \fn          int16_t create_fb(char *dataPtr, byte *fb)
+
+                                    *  \brief       reset the Framebuffer
+
+                                    *  \param       dataPtr String to scroll across
+
+                                    *  \param       fb Pointer to the frame buffer array
+
+                                    *  \exception   none
+
+                                    *  \return      length of frame buffer
+
+                                    ***********************************************************************/             
+
+                                    function ShowDateAndTime(){
+
+                                   
+
+                                               var today = new Date();
+
+                                               var month = today.getMonth();
+
+                                               var day = today.getDay();
+
+                                               var year = today.getFullYear();
+
+ 
+
+                                               var hour = today.getHours();
+
+                                               var minute = today.getMinutes();
+
+                                               var seconds = today.getSeconds();
+
+ 
+
+                                               document.getElementById('id_clock').innerHTML = year + '-' + leadingzero(month) + '-' + leadingzero(day) + ' - ' + leadingzero(hour) + ':' + leadingzero(minute) + ":" + leadingzero(seconds);
+
+                                               window.status = "test";
+
+                                   
+
+                                    };
+
+ 
+
+                                    /***********************************************************************
+
+                                    *! \fn          function leadingzero (number)
+
+                                    *  \brief       set leading zero to numer
+
+                                    *  \param       number
+
+                                    *  \exception   none
+
+                                    *  \return      number with leading
+
+                                    ***********************************************************************/             
+
+                                    function leadingzero (number) {
+
+                                               return (number < 10) ? '0' + number : number;
+
+                                    }
+
+ 
+
+                        </script>
+
+ 
+
+ 
+
+                        <style type="text/css">
+
+                                    * {
+
+                                               box-sizing: border-box;
+
+                                    }
+
+                                    html, body {
+
+                                               margin: 0;
+
+                                               padding: 0;
+
+                                               font-family: sans-serif;
+
+                                               font-size: 1.1em;
+
+                                               text-align: center;
+
+                                               color: #FFF;
+
+                                    }
+
+                                    .holy-grail header,
+
+                                    .holy-grail footer,
+
+                                    .hg-sidebar,
+
+                                    .hg-navigationbar_left,
+
+                                    .hg-header_top_left,
+
+                                    .holy-grail-content {
+
+                                               padding: 20px;
+
+                                    }
+
+                                    .holy-grail header{
+
+                                               background: rgb(171, 201, 245);
+
+                                    }
+
+                                    .holy-grail footer {
+
+                                               background: rgb(221, 233, 250);
+
+                                    }
+
+                                   
+
+                                    .holy-grail-content {
+
+                                               color: #777;
+
+                                    }
+
+ 
+
+                                    /**
+
+                                    * Flex things:
+
+                                    * — Mobile first
+
+                                    * — Responsive
+
+                                    */
+
+                                    .holy-grail {
+
+                                               min-height: 100vh;
+
+                                    }
+
+                                    .holy-grail,
+
+                                    .holy-grail-body {
+
+                                               display: flex;
+
+                                               flex: 1 1 auto;
+
+                                               flex-direction: column;
+
+                                    }
+
+                                    .holy-grail-content {
+
+                                               flex: 1 1 auto;
+
+                                    }
+
+                                   
+
+                                   
+
+                                   
+
+                                    .hg-header_top_left{
+
+                                        order: -1;
+
+                                               flex: 0 0 260px;
+
+                                    }
+
+                                    .hg-header_top_right{
+
+                                        flex: 0 0 260px;
+
+                                    }
+
+                                    .holy-grail-content-sidebar-1_left{
+
+                                        background: rgb(197, 218, 248);
+
+                                    }
+
+                                    .holy-grail-content-sidebar-1_right {
+
+                                               background: #777;
+
+                                    }
+
+                                   
+
+                                    @media (min-width: 768px) {
+
+                                               .holy-grail-body {
+
+                                                           flex-direction: row;
+
+                                               }
+
+                                               .hg-sidebar_right{        
+
+                                                           flex: 0 0 260px;
+
+                                               }
+
+                                               .hg-navigationbar_left{
+
+                                                           flex: 0 0 260px;
+
+                                                           order: -1;
+
+                                               }
+
+                                    }
+
+                                   
+
+                        </style>
+
+ 
+
+            </head>           
+
+            <body class="holy-grail">
+
+ 
+
+                        <header>
+
+                       
+
+                                    <div class="holy-grail-body">
+
+                                               <section class="holy-grail-content"><p> Top Middle</p></section>
+
+                                               <div class="hg-navigationbar_left">Top Left</div>
+
+                                               <div class="hg-sidebar_right">
+
+                                                           <p id="id_Browser"></p>
+
+                                                           <p id="ip_Browser">0.0.0.0</p>
+
+                                                           <p id="id_clock" name="id_clock">dddd</p>
+
+                                               </div>
+
+                                    </div>
+
+                                              
+
+                                   
+
+                        </header>
+
+ 
+
+                        <div class="holy-grail-body">
+
+ 
+
+                                    <section class="holy-grail-content">
+
+                                               <p>Main content of the page</p>
+
+                                    </section>
+
+ 
+
+                                    <div class="hg-navigationbar_left holy-grail-content-sidebar-1_left">
+
+                                                <p>Navigation</p>
+
+                                    </div>
+
+ 
+
+                                    <div class="holy-grail-content-sidebar-1_right hg-sidebar_right">
+
+                                               <p>Sidebar 2</p>
+
+                                    </div>
+
+ 
+
+                        </div>
+
+ 
+
+                        <footer>
+
+                                    <p>Footer</p>
+
+                        </footer>
+
+            </body>
+
 </html>
+
+ 
+
+Mit freundlichen Grüßen
+
+Rene Gräber
+Specialist TEC IT
+
+EGGER Holzwerkstoffe Wismar GmbH & CO.KG
+Am Haffeld 1
+D-23970 Wismar
+
+Tel: +49 3841 301 21437
+Mobil: +49 160 4841730
+Fax: +49 3841 301 61437
+e-mail: rene.graeber@egger.com
+Internet: http://www.egger.com
+
+***********************************************************************************************
+Handelsregister: Amtsgericht Schwerin HRA 1505
+Komplementärin: EGGER Holzwerkstoffe Wismar Beteiligungs GmbH
+Handelsregister: Amtsgericht Schwerin HRB 7226
+Geschäftsführer: Stefan Jacobs, Ralf Lorber, Moritz Rieber, Ralf Borchers
+***********************************************************************************************
